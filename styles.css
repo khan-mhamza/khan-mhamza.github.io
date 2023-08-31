@@ -1,22 +1,15 @@
-/* Reset some default browser styles */
-body, h1, h2, h3, p {
+body {
     margin: 0;
     padding: 0;
-}
-
-body {
     font-family: Arial, sans-serif;
-    display: flex;
-    align-items: center; /* Center vertically */
-    justify-content: center; /* Center horizontally */
-    min-height: 100vh; /* Ensure the content takes at least the viewport height */
-    background-color: #f5f5f5; /* Add a background color for better visibility */
 }
 
 .sidebar {
     width: 250px;
     background-color: #333;
     color: #fff;
+    position: fixed;
+    height: 100%;
     overflow: auto;
 }
 
@@ -56,8 +49,4 @@ body {
 .content {
     margin-left: 250px;
     padding: 20px;
-}
-
-.tab-content.hidden {
-    display: none;
 }
