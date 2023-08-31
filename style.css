@@ -78,7 +78,16 @@ section:nth-child(odd) {
 @media (max-width: 768px) {
   .burger {
     display: flex;
-    margin-right: 20px;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 15px;
+  }
+
+  .bar {
+    width: 25px;
+    height: 3px;
+    margin: 3px 0;
+    background-color: #fff;
   }
 
   .nav-links {
