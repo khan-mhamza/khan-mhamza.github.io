@@ -1,3 +1,4 @@
+// Your existing code
 let sections = document.querySelectorAll('section');
 let navLinks = document.querySelectorAll('header nav a');
 
@@ -17,3 +18,11 @@ window.onscroll = () => {
     }
   });
 };
+
+// Responsive burger menu
+const burger = document.querySelector('.burger');
+const navLinks = document.querySelector('.nav-links');
+
+burger.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+});
