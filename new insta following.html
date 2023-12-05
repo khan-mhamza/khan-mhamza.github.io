@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Processing</title>
+    <style>
+        #result {
+            display: flex;
+            justify-content: space-around;
+        }
+        #followersResult, #followingResult, #uniqueFollowingResult {
+            flex-basis: 30%;
+        }
+        #listsForm {
+            display: flex;
+            flex-direction: row;
+            gap: 10px; /* Adjust the gap between textareas */
+        }
+        #listsForm textarea {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <h1>List Processing</h1>
+    <form id="listsForm">
+        <div>
+            <label for="followers">Followers:</label>
+            <textarea id="followers" name="followers" rows="5" cols="30" required></textarea>
+        </div>
+        <div>
+            <label for="following">Following:</label>
+            <textarea id="following" name="following" rows="5" cols="30" required></textarea>
+        </div>
+        <br>
+        <button type="button" onclick="processLists()">Process Lists</button>
+    </form>
+
+    <div id="result">
+        <div id="followersResult"></div>
+        <div id="followingResult"></div>
+        <button type="button" onclick="showUniqueFollowing()">Show Unique Following</button>
+        <div id="uniqueFollowingResult"></div>
+    </div>
+
+    <script>
+        let processedFollowers = [];
+        let processedFollowing = [];
+
+        function processLists() {
+            const followersInput = document.getElementById('followers');
+            const followingInput = document.getElementById('following');
+            const followersResultDiv = document.getElementById('followersResult');
+            const followingResultDiv = document.getElementById('followingResult');
+
+            processedFollowers = processList(followersInput.value.split('\n'));
+            processedFollowing = processList(followingInput.value.split('\n'));
+
+            displayResults(processedFollowers, processedFollowing, followersResultDiv, followingResultDiv);
+        }
+
+        function processList(list) {
+            // Remove items that resemble a date and time
+            return list.filter(item => !item.match(/\b\d{1,2}:\d{2}(:\d{2})?\b|\b\d{1,2}\/\d{1,2}\/\d{2,4}\b/));
+        }
+
+        function displayResults(processedFollowers, processedFollowing, followersResultDiv, followingResultDiv) {
+            followersResultDiv.innerHTML = "<h3>Followers</h3><pre>" + processedFollowers.join('<br>') + "</pre>";
+            followingResultDiv.innerHTML = "<h3>Following</h3><pre>" + processedFollowing.join('<br>') + "</pre>";
+        }
+
+        function showUniqueFollowing() {
+            const uniqueFollowingResultDiv = document.getElementById('uniqueFollowingResult');
+            const uniqueFollowing = processedFollowing.filter(item => !processedFollowers.includes(item));
+
+            uniqueFollowingResultDiv.innerHTML = "<h3>Unique Following</h3><pre>" + uniqueFollowing.join('<br>') + "</pre>";
+        }
+    </script>
+</body>
+</html>
