@@ -40,7 +40,7 @@
     <div id="result">
         <div id="followersResult"></div>
         <div id="followingResult"></div>
-        <button type="button" onclick="showUniqueFollowing()">Show Unique Following</button>
+        <button type="button" onclick="showUniqueFollowing()">Show who unfollowed me</button>
         <div id="uniqueFollowingResult"></div>
     </div>
 
@@ -74,7 +74,7 @@
             const uniqueFollowingResultDiv = document.getElementById('uniqueFollowingResult');
             const uniqueFollowing = processedFollowing.filter(item => !processedFollowers.includes(item));
 
-            uniqueFollowingResultDiv.innerHTML = "<h3>Unique Following</h3><pre>" + uniqueFollowing.join('<br>') + "</pre>";
+            uniqueFollowingResultDiv.innerHTML = "<h3>Un/Never Followed U</h3><pre>" + uniqueFollowing.join('<br>') + "</pre>";
         }
     </script>
 </body>
